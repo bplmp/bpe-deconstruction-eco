@@ -5,7 +5,9 @@ const DIST_FOLDER = 'dist'
 console.log(`---> deploying from folder: ${DIST_FOLDER}`)
 
 ghpages.publish(DIST_FOLDER, function(err) {
-  console.log(`---> error: ${err}`)
+  if (err) {
+    console.log(`---> error: ${err}`)
+  } else {
+    console.log(`---> all done.`)
+  }
 })
-
-console.log('---> all done')
