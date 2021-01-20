@@ -52,7 +52,7 @@ function buildFeature(feature) {
   }
   for (let variable in feature) {
     if (feature.hasOwnProperty(variable)) {
-      featureObject.properties[variable] = feature[variable]
+      featureObject.properties[variable.trim()] = feature[variable].trim()
     }
   }
   featureObject.geometry.coordinates.push(parseFloat(feature[LON_COL]))
@@ -88,7 +88,11 @@ function buildGeoJSON(data) {
 }
 
 function loadMap(geoJSON) {
-  const map = L.map('map').setView(INITIAL_COORDS, INITIAL_ZOOM)
+  const map = L.map('map', {
+    center: INITIAL_COORDS,
+    zoom: INITIAL_ZOOM,
+    scrollWheelZoom: false
+  })
 
   L.tileLayer(MAPBOX_LINK, {
     maxZoom: 18,
@@ -100,41 +104,24 @@ function loadMap(geoJSON) {
 
   function popup(feature, layer) {
     let prop = feature.properties
-    let entityName = 'ENTITY'
-    let address = 'FULL ADDRESS'
-    let locationName = 'LOCATION NAME'
-    let generalRole = 'GENERAL ROLE'
-    let role = 'ROLE(S)'
-    let link = 'WEBSITE'
-    let contact = 'CONTACT'
-    let email = 'EMAIL'
-    let phone = 'PHONE'
-
-    function generateLine(prop, propKey) {
-      return (prop[propKey] ? `<tr><td><strong>${propKey}</strong></td><td>${prop[propKey]}</td></tr>` : '')
-    }
-    function generateLink(prop, propKey, linkText) {
-      return (prop[propKey] ? `<tr><td colspan="2"><strong><a href="${prop[propKey]}" target="_blank">${linkText}</a></strong></td></tr>` : '')
-    }
-
-    let popupContent = `
-      ${generateLine(prop, 'ENTITY')}
-      ${generateLine(prop, 'GENERAL ROLE')}
-      ${generateLine(prop, 'ROLE(S)')}
-      ${generateLine(prop, 'LOCATION NAME')}
-      ${generateLine(prop, 'FULL ADDRESS')}
-      ${generateLine(prop, 'CONTACT')}
-      ${generateLine(prop, 'EMAIL')}
-      ${generateLine(prop, 'PHONE')}
-      ${generateLink(prop, link, 'WEBSITE')}
-    `
 
     layer.bindPopup(`
-      <table class="table table-sm">
-        <tbody>
-          ${popupContent}
-        </tbody>
-      </table>`)
+      <div class="popup">
+        <h2>${prop['ENTITY']}</h2>
+        ${prop['LOCATION NAME'] ? `<h4>${prop['LOCATION NAME']}</h4>` : ''}
+        <hr/>
+        <table class="table">
+          <tbody>
+            <tr><td><strong>Role(s)</strong></td><td>${prop['ROLE(S)']}</td></tr>
+            <tr><td><strong>Address</strong></td><td>${prop['FULL ADDRESS']}</td></tr>
+            <tr><td><strong>Contact</strong></td><td>${prop['CONTACT']}</td></tr>
+            <tr><td><strong>Email</strong></td><td>${prop['EMAIL']}</td></tr>
+            <tr><td><strong>Phone</strong></td><td>${prop['PHONE']}</td></tr>
+            <tr><td><strong>Website</strong></td><td><a href="${prop['WEBSITE']}" target="_blank">${prop['WEBSITE']}</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      `)
   }
 
   const pointsLayers = L.geoJSON(geoJSON, {

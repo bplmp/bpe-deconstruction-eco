@@ -8,7 +8,6 @@ html {
   margin: 0;
   background: #cad2d3;
   font-family: $font-stack;
-  font-size: 15px;
   color: $primary-color;
 }
 
@@ -54,4 +53,16 @@ html {
 
 .flex-column {
   flex-direction: column;
+}
+
+.popup {
+
+}
+
+.table {
+  td {
+    padding-right: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+  font-size: 0.9rem;
 }
