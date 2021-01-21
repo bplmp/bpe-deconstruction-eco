@@ -101,7 +101,7 @@ function loadMap(geoJSON) {
         <h2>${prop['ENTITY']}</h2>
         ${prop['LOCATION NAME'] ? `<h4>${prop['LOCATION NAME']}</h4>` : ''}
         <hr/>
-        <table class="table">
+        <table class="popup-table">
           <tbody>
             <tr><td><strong>Role(s)</strong></td><td>${prop['ROLE(S)']}</td></tr>
             <tr><td><strong>Address</strong></td><td>${prop['FULL ADDRESS']}</td></tr>

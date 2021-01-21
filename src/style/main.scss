@@ -26,7 +26,7 @@ html {
 }
 
 .map-legend {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
   z-index: 1000;
@@ -59,10 +59,15 @@ html {
 
 }
 
-.table {
+.popup-table {
   td {
     padding-right: 0.75rem;
     padding-bottom: 0.75rem;
   }
   font-size: 0.9rem;
+}
+
+.table-wrapper {
+  background: #fff;
+  padding: 4rem 2rem 2rem 2rem;
 }
