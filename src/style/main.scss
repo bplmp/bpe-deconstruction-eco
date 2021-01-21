@@ -27,11 +27,11 @@ html {
 
 .map-legend {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  top: 0;
+  right: 0;
   z-index: 1000;
-  margin-left: 1rem;
-  margin-bottom: 2rem;
+  margin-right: 1rem;
+  margin-top: 2rem;
   padding: 1rem;
   background-color: #fff;
   border-radius: 0.5rem;
