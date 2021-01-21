@@ -1,7 +1,5 @@
-import * as Papa from 'papaparse'
 import * as L from 'leaflet'
 
-const publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/19ss6dmhb2B9qFWZQVODeYFJzMBCvyd5fPy8bjkA3CB8/pub?gid=1619676924&output=csv'
 const MAPBOX_LINK = 'https://api.mapbox.com/styles/v1/bernardosp/ck3r9ne5k21bj1dpdgl67vzyu/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYmVybmFyZG9zcCIsImEiOiJjamkyMmhqdjAwZ284M2txcHpqYjUwam91In0.RiploEl5Mm6bjXhPZbN6XQ'
 const LAT_COL = 'LAT'
 const LON_COL = 'LON'
@@ -22,23 +20,16 @@ export {
   mapLegend,
 }
 
-function init() {
-  Papa.parse(publicSpreadsheetUrl, {
-  download: true,
-  header: true,
-  complete: function(results) {
-      const data = results.data
-      const geoJSON = buildGeoJSON(data)
-      console.log(data)
-      console.log(geoJSON)
-      console.log(data.length, 'rows received')
-      console.log(geoJSON.features.length, 'rows parsed')
-      loadMap(geoJSON)
-      setTimeout(function(){
-        document.getElementById('spinner').style.display = 'none'
-      }, 350)
-    }
-  })
+function init(data) {
+  const geoJSON = buildGeoJSON(data)
+  console.log(data)
+  console.log(geoJSON)
+  console.log(data.length, 'rows received')
+  console.log(geoJSON.features.length, 'rows parsed')
+  loadMap(geoJSON)
+  setTimeout(function(){
+    document.getElementById('spinner').style.display = 'none'
+  }, 350)
 }
 
 function buildFeature(feature) {

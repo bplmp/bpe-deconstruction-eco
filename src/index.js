@@ -1,5 +1,7 @@
+import * as Data from './data.js'
 import * as Map from './map.js'
 import style from './style/main.scss'
+
 
 const app = document.querySelector('#app')
 
@@ -13,7 +15,11 @@ app.innerHTML = `
 <div id='mapLegend'></div>
 `
 
-window.addEventListener('DOMContentLoaded', Map.init)
+window.addEventListener('DOMContentLoaded', init)
 
-const mapLegend = document.querySelector('#mapLegend')
-mapLegend.innerHTML = Map.mapLegend(Map.roleColors)
+function init() {
+  Data.getSpreadsheetData()  
+
+  const mapLegend = document.querySelector('#mapLegend')
+  mapLegend.innerHTML = Map.mapLegend(Map.roleColors)
+}
