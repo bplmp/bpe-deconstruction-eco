@@ -12,6 +12,9 @@ function init(data, elementId) {
   $(elementId).DataTable({
     data: data,
     responsive: true,
+    scrollY: '800px',
+    scrollCollapse: true,
+    paging: true,
     columns: [{
         data: 'ENTITY',
         title: 'ENTITY',
