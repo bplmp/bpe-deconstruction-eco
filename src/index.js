@@ -12,8 +12,9 @@ app.innerHTML = `
 </div>
 <div id="map"></div>
 <div id="mapLegend"></div>
-<div class="table-wrapper">
-  <table id="table" class="stripe display responsive" width="100%"></table>
+<div id="sidebar-wrapper">
+  <div id="sidebar-header"></div>
+  <div id="sidebar"></div>
 </div>
 `
 

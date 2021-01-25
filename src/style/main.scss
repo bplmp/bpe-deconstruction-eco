@@ -5,7 +5,6 @@ $link-color: #0078A8;
 
 body,
 html {
-  height: 1650px;
   margin: 0;
   background: #fff;
   font-family: $font-stack;
@@ -18,7 +17,7 @@ a {
 
 #map {
   width: 100%;
-  height: 800px;
+  height: 100vh;
 }
 
 #spinner {
@@ -28,6 +27,40 @@ a {
   z-index: 10000;
   margin-top: -2rem;
   margin-left: -2rem;
+}
+
+#sidebar-wrapper {
+  height: 100vh;
+  @media only screen and (max-width: 481px) {
+    width: 95vw;
+  }
+  width: 500px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #fff;
+  border-left: 2px solid rgba(0,0,0,0.2);
+}
+
+#sidebar {
+  padding: 2rem;
+}
+
+.sidebar-row {
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #333;
+}
+
+.sidebar-table {
+  td {
+    padding-right: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+  font-size: 0.9rem;
 }
 
 .map-legend {
