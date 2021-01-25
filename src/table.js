@@ -25,20 +25,27 @@ function init(data, elementId) {
         }
       },
       {
+        data: 'LOCATION',
+        title: 'LOCATION',
+      },
+      {
         data: 'ROLE(S)',
         title: 'ROLE(S)',
       },
       {
         data: 'FULL ADDRESS',
         title: 'FULL ADDRESS',
+        className: 'none',
       },
       {
         data: 'CONTACT',
         title: 'CONTACT',
+        className: 'none',
       },
       {
         data: 'EMAIL',
         title: 'EMAIL',
+        className: 'none',
         render: function(data, type, full, meta) {
           return `<a href="mailto:${data}">${data}</a>`
         }
@@ -46,6 +53,7 @@ function init(data, elementId) {
       {
         data: 'PHONE',
         title: 'PHONE',
+        className: 'none',
         render: function(data, type, full, meta) {
           return `<a href="tel:${data}">${data}</a>`
         }
@@ -53,6 +61,7 @@ function init(data, elementId) {
       {
         data: 'WEBSITE',
         title: 'WEBSITE',
+        className: 'none',
         render: function(data, type, full, meta) {
           return `<a href="${data}" target="_blank">${data}</a>`
         }
@@ -60,6 +69,7 @@ function init(data, elementId) {
       {
         data: 'COLLABORATION OPPORTUNITIES',
         title: 'COLLABORATION OPPORTUNITIES',
+        className: 'none',
       },
     ]
   })
