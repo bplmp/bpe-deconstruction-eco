@@ -7,7 +7,7 @@ const INITIAL_COORDS = [37.76496739271615, -122.39985495803376]
 const INITIAL_ZOOM = 8
 
 const roleColors = {
-  'Architectural / Consulting Firm': '#ff7f0e',
+  'Consulting': '#ff7f0e',
   'Deconstruction': '#2ca02c',
   'Government / Public Agency': '#aec7e8',
   'Reuse': '#9467bd',
@@ -122,7 +122,7 @@ function loadMap(geoJSON) {
         radius: 9,
         fillColor: roleColors[feature.properties['GENERAL ROLE']],
         color: "#fff",
-        weight: 1,
+        weight: 1.5,
         opacity: 1,
         fillOpacity: 0.9,
       })
@@ -148,11 +148,18 @@ function convertDMSToDD(degrees, minutes, seconds, direction) {
 }
 
 function mapLegend(colors) {
-  const colorsHTML = []
+  const colorsHTML = [`
+    <div id="map-legend-show" class="map-legend-row map-legend-icon flex visible">
+      <span>See Legend</span>
+    </div>
+    <div id="map-legend-hide" class="map-legend-row map-legend-icon flex invisible">
+      <span>Hide Legend</span>
+    </div>
+  `]
   for (let variable in colors) {
     if (colors.hasOwnProperty(variable)) {
       colorsHTML.push(`
-        <div class="map-legend-row flex">
+        <div class="map-legend-row map-legend-content flex invisible">
           <div class="map-legend-color" style="background: ${colors[variable]}"></div>
           <span>${variable}</span>
         </div>

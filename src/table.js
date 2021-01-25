@@ -15,9 +15,14 @@ function init(data, elementId) {
     scrollY: '800px',
     scrollCollapse: true,
     paging: true,
-    columns: [{
+    columns: [
+      {
         data: 'ENTITY',
         title: 'ENTITY',
+        className: 'details-col',
+        render: function(data, type, full, meta) {
+          return `<span class="details-link">${data}</span>`
+        }
       },
       {
         data: 'ROLE(S)',
@@ -51,7 +56,11 @@ function init(data, elementId) {
         render: function(data, type, full, meta) {
           return `<a href="${data}" target="_blank">${data}</a>`
         }
-      }
+      },
+      {
+        data: 'COLLABORATION OPPORTUNITIES',
+        title: 'COLLABORATION OPPORTUNITIES',
+      },
     ]
   })
 }

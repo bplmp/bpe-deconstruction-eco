@@ -24,4 +24,29 @@ function init() {
 
   const mapLegend = document.querySelector('#mapLegend')
   mapLegend.innerHTML = Map.mapLegend(Map.roleColors)
+
+  const mapLegendShow = document.querySelector('#map-legend-show')
+  const mapLegendHide = document.querySelector('#map-legend-hide')
+  const mapLegendContent = document.querySelectorAll('.map-legend-content')
+
+  mapLegendShow.onclick = function () {
+    mapLegendShow.classList.add('invisible')
+    mapLegendShow.classList.remove('visible')
+    mapLegendHide.classList.add('visible')
+    mapLegendHide.classList.remove('invisible')
+    mapLegendContent.forEach(div => {
+        div.classList.add('visible')
+        div.classList.remove('invisible')
+    })
+  }
+  mapLegendHide.onclick = function () {
+    mapLegendShow.classList.remove('invisible')
+    mapLegendShow.classList.add('visible')
+    mapLegendHide.classList.remove('visible')
+    mapLegendHide.classList.add('invisible')
+    mapLegendContent.forEach(div => {
+        div.classList.remove('visible')
+        div.classList.add('invisible')
+    })
+  }
 }
