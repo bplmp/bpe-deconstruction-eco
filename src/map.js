@@ -99,7 +99,7 @@ function loadMap(geoJSON) {
     layer.bindPopup(`
       <div class="popup">
         <h2>${prop['ENTITY']}</h2>
-        ${prop['LOCATION NAME'] ? `<h4>${prop['LOCATION NAME']}</h4>` : ''}
+        ${prop['LOCATION'] ? `<h4>${prop['LOCATION']}</h4>` : ''}
         <hr/>
         <table class="popup-table">
           <tbody>
@@ -111,6 +111,7 @@ function loadMap(geoJSON) {
             <tr><td><strong>Website</strong></td><td><a href="${prop['WEBSITE']}" target="_blank">${prop['WEBSITE']}</a></td></tr>
           </tbody>
         </table>
+        <p class="popup-p"><strong>Collaboration Opportunities: </strong>${prop['COLLABORATION OPPORTUNITIES']}</p>
       </div>
       `)
   }
