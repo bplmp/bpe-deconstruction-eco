@@ -1,4 +1,5 @@
 import * as L from 'leaflet'
+import * as Sidebar from './sidebar.js'
 
 const MAPBOX_LINK = 'https://api.mapbox.com/styles/v1/bernardosp/ck3r9ne5k21bj1dpdgl67vzyu/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYmVybmFyZG9zcCIsImEiOiJjamkyMmhqdjAwZ284M2txcHpqYjUwam91In0.RiploEl5Mm6bjXhPZbN6XQ'
 const LAT_COL = 'LAT'
@@ -26,10 +27,11 @@ function init(data) {
   console.log(geoJSON)
   console.log(data.length, 'rows received')
   console.log(geoJSON.features.length, 'rows parsed')
-  loadMap(geoJSON)
   setTimeout(function(){
     document.getElementById('spinner').style.display = 'none'
   }, 350)
+  const map = loadMap(geoJSON)
+  return map
 }
 
 function buildFeature(feature) {
@@ -94,31 +96,24 @@ function loadMap(geoJSON) {
   }).addTo(map)
 
   function popup(feature, layer) {
-    let prop = feature.properties
-
     layer.bindPopup(`
       <div class="popup">
-        <h2>${prop['ENTITY']}</h2>
-        ${prop['LOCATION'] ? `<h4>${prop['LOCATION']}</h4>` : ''}
-        <hr/>
-        <table class="popup-table">
-          <tbody>
-            <tr><td><strong>Role(s)</strong></td><td>${prop['ROLE(S)']}</td></tr>
-            <tr><td><strong>Address</strong></td><td>${prop['FULL ADDRESS']}</td></tr>
-            <tr><td><strong>Contact</strong></td><td>${prop['CONTACT']}</td></tr>
-            <tr><td><strong>Email</strong></td><td>${prop['EMAIL']}</td></tr>
-            <tr><td><strong>Phone</strong></td><td>${prop['PHONE']}</td></tr>
-            <tr><td><strong>Website</strong></td><td><a href="${prop['WEBSITE']}" target="_blank">${prop['WEBSITE']}</a></td></tr>
-          </tbody>
-        </table>
-        <p class="popup-p"><strong>Collaboration Opportunities: </strong>${prop['COLLABORATION OPPORTUNITIES']}</p>
+        <h3>${feature.properties['ENTITY']}</h3>
+        ${feature.properties['LOCATION'] ? `<h4>${feature.properties['LOCATION']}</h4>` : ''}
       </div>
-      `)
+    `)
+
+    layer.on('click', function (e) {
+      const prop = e.target.feature.properties
+      const id = `sidebar-${prop['ID']}`
+      Sidebar.showSidebar()
+      setTimeout(function(){ location.hash = "#" + id }, 300)
+
+    })
   }
 
   const pointsLayers = L.geoJSON(geoJSON, {
     pointToLayer: function(feature, latlng) {
-      console.log(feature);
       return L.circleMarker(latlng, {
         radius: 9,
         fillColor: roleColors[feature.properties['GENERAL ROLE']],
@@ -131,6 +126,12 @@ function loadMap(geoJSON) {
     onEachFeature: popup
   }).addTo(map)
 
+
+  map.on('dragend', function(event) {
+    Sidebar.hideSidebar()
+  })
+
+  return map
 }
 
 // https://stackoverflow.com/questions/1140189/converting-latitude-and-longitude-to-decimal-values

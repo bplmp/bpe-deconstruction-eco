@@ -12,10 +12,7 @@ app.innerHTML = `
 </div>
 <div id="map"></div>
 <div id="mapLegend"></div>
-<div id="sidebar-wrapper">
-  <div id="sidebar-header"></div>
-  <div id="sidebar"></div>
-</div>
+<div id="sidebar-wrapper"></div>
 `
 
 window.addEventListener('DOMContentLoaded', init)

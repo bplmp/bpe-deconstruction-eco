@@ -15,9 +15,10 @@ function getSpreadsheetData() {
   header: true,
   complete: function(results) {
       const data = results.data
-      Map.init(data)
-      // Table.init(data, '#table')
-      Sidebar.init(data, '#sidebar')
+      data.sort((a, b) => a.ENTITY.localeCompare(b.ENTITY))
+
+      const map = Map.init(data)
+      Sidebar.init(data, '#sidebar-wrapper', map)
     }
   })
 }
