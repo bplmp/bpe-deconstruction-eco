@@ -9,11 +9,15 @@ export {
 }
 
 function init(data, elementId) {
+  for (var i = 0; i < data.length; i++) {
+    let row = data[i]
+    row['ENTITY'] = row['ENTITY'] + ' - ' + row['LOCATION']
+  }
   $(elementId).DataTable({
     data: data,
     responsive: true,
-    scrollY: '800px',
-    scrollCollapse: true,
+    // scrollY: '510px',
+    // scrollCollapse: true,
     paging: true,
     columns: [
       {
@@ -24,10 +28,10 @@ function init(data, elementId) {
           return `<span class="details-link">${data}</span>`
         }
       },
-      {
-        data: 'LOCATION',
-        title: 'LOCATION',
-      },
+      // {
+      //   data: 'LOCATION',
+      //   title: 'LOCATION',
+      // },
       {
         data: 'ROLE(S)',
         title: 'ROLE(S)',
