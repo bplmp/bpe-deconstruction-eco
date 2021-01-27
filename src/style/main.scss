@@ -10,7 +10,7 @@ $table-padding-top: 50px;
 body,
 html {
   height: 1410px;
-  margin: 0;
+  margin: 10px;
   background: #fff;
   font-family: $font-stack;
   color: $primary-color;
@@ -39,8 +39,8 @@ a {
   top: 0;
   right: 0;
   z-index: 1000;
-  margin-right: 0.5rem;
-  margin-top: 0.5rem;
+  margin-right: 2rem;
+  margin-top: 2rem;
   padding: 1rem;
   background-color: #fff;
   border-radius: 4px;
