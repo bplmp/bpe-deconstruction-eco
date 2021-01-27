@@ -106,8 +106,8 @@ function loadMap(geoJSON) {
             <tr><td><strong>Role(s)</strong></td><td>${prop['ROLE(S)']}</td></tr>
             <tr><td><strong>Address</strong></td><td>${prop['FULL ADDRESS']}</td></tr>
             <tr><td><strong>Contact</strong></td><td>${prop['CONTACT']}</td></tr>
-            <tr><td><strong>Email</strong></td><td>${prop['EMAIL']}</td></tr>
-            <tr><td><strong>Phone</strong></td><td>${prop['PHONE']}</td></tr>
+            <tr><td><strong>Email</strong></td><td><a href="mailto:${prop['EMAIL']}">${prop['EMAIL']}</a></td></tr>
+            <tr><td><strong>Phone</strong></td><td><a href="tel:${prop['PHONE']}">${prop['PHONE']}</a></td></tr>
             <tr><td><strong>Website</strong></td><td><a href="${prop['WEBSITE']}" target="_blank">${prop['WEBSITE']}</a></td></tr>
           </tbody>
         </table>
@@ -150,17 +150,17 @@ function convertDMSToDD(degrees, minutes, seconds, direction) {
 
 function mapLegend(colors) {
   const colorsHTML = [`
-    <div id="map-legend-show" class="map-legend-row map-legend-icon flex visible">
+    <div id="map-legend-show" class="map-legend-row map-legend-icon flex invisible">
       <span>See Legend</span>
     </div>
-    <div id="map-legend-hide" class="map-legend-row map-legend-icon flex invisible">
+    <div id="map-legend-hide" class="map-legend-row map-legend-icon flex visible">
       <span>Hide Legend</span>
     </div>
   `]
   for (let variable in colors) {
     if (colors.hasOwnProperty(variable)) {
       colorsHTML.push(`
-        <div class="map-legend-row map-legend-content flex invisible">
+        <div class="map-legend-row map-legend-content flex visible">
           <div class="map-legend-color" style="background: ${colors[variable]}"></div>
           <span>${variable}</span>
         </div>
