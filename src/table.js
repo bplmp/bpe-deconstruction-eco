@@ -22,7 +22,7 @@ function init(data, elementId) {
     columns: [
       {
         data: 'ENTITY',
-        title: 'ENTITY',
+        title: 'ENTITY:',
         className: 'details-col',
         render: function(data, type, full, meta) {
           return `<span class="details-link">${data}</span>`
@@ -30,25 +30,25 @@ function init(data, elementId) {
       },
       // {
       //   data: 'LOCATION',
-      //   title: 'LOCATION',
+      //   title: 'LOCATION:',
       // },
       {
         data: 'ROLE(S)',
-        title: 'ROLE(S)',
+        title: 'ROLE(S):',
       },
       {
         data: 'FULL ADDRESS',
-        title: 'FULL ADDRESS',
+        title: 'ADDRESS:',
         className: 'none',
       },
       {
         data: 'CONTACT',
-        title: 'CONTACT',
+        title: 'CONTACT:',
         className: 'none',
       },
       {
         data: 'EMAIL',
-        title: 'EMAIL',
+        title: 'EMAIL:',
         className: 'none',
         render: function(data, type, full, meta) {
           return `<a href="mailto:${data}">${data}</a>`
@@ -56,7 +56,7 @@ function init(data, elementId) {
       },
       {
         data: 'PHONE',
-        title: 'PHONE',
+        title: 'PHONE:',
         className: 'none',
         render: function(data, type, full, meta) {
           return `<a href="tel:${data}">${data}</a>`
@@ -64,7 +64,7 @@ function init(data, elementId) {
       },
       {
         data: 'WEBSITE',
-        title: 'WEBSITE',
+        title: 'WEBSITE:',
         className: 'none',
         render: function(data, type, full, meta) {
           return `<a href="${data}" target="_blank">${data}</a>`
@@ -72,7 +72,7 @@ function init(data, elementId) {
       },
       {
         data: 'COLLABORATION OPPORTUNITIES',
-        title: 'COLLABORATION OPPORTUNITIES',
+        title: 'COLLABORATION OPPORTUNITIES:',
         className: 'none',
       },
     ]
