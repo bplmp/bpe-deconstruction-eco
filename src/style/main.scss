@@ -90,13 +90,19 @@ a {
 
 .popup-table {
   td {
-    padding-right: 0.75rem;
     padding-bottom: 0.75rem;
   }
+  td:nth-child(1) {
+    padding-right: 0.75rem;
+    width: 25%;
+  }
+  td a {
+    word-break: break-word;
+  }
   font-size: 0.9rem;
-  word-wrap: break-word;
+  table-layout: fixed;
+  width: 95%;
 }
-
 .popup-p {
   font-size: 0.9rem;
 }

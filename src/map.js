@@ -5,6 +5,7 @@ const LAT_COL = 'LAT'
 const LON_COL = 'LON'
 const INITIAL_COORDS = [37.76496739271615, -122.39985495803376]
 const INITIAL_ZOOM = 8
+const isMobile = window.innerHeight >= window.innerWidth
 
 const roleColors = {
   'Consulting': '#ff7f0e',
@@ -113,7 +114,9 @@ function loadMap(geoJSON) {
         </table>
         <p class="popup-p"><strong>Collaboration Opportunities: </strong>${prop['COLLABORATION OPPORTUNITIES']}</p>
       </div>
-      `)
+      `, {
+        maxWidth : isMobile ? window.innerWidth * 0.75 : 450
+      })
   }
 
   const pointsLayers = L.geoJSON(geoJSON, {
@@ -150,17 +153,17 @@ function convertDMSToDD(degrees, minutes, seconds, direction) {
 
 function mapLegend(colors) {
   const colorsHTML = [`
-    <div id="map-legend-show" class="map-legend-row map-legend-icon flex invisible">
+    <div id="map-legend-show" class="map-legend-row map-legend-icon flex ${isMobile ? 'visible' : 'invisible'}">
       <span>See Legend</span>
     </div>
-    <div id="map-legend-hide" class="map-legend-row map-legend-icon flex visible">
+    <div id="map-legend-hide" class="map-legend-row map-legend-icon flex ${isMobile ? 'invisible' : 'visible'}">
       <span>Hide Legend</span>
     </div>
   `]
   for (let variable in colors) {
     if (colors.hasOwnProperty(variable)) {
       colorsHTML.push(`
-        <div class="map-legend-row map-legend-content flex visible">
+        <div class="map-legend-row map-legend-content flex ${isMobile ? 'invisible' : 'visible'}">
           <div class="map-legend-color" style="background: ${colors[variable]}"></div>
           <span>${variable}</span>
         </div>
