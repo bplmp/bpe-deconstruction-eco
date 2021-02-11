@@ -2,7 +2,7 @@ import * as Papa from 'papaparse'
 import * as Map from './map.js'
 import * as Table from './table.js'
 
-const publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/19ss6dmhb2B9qFWZQVODeYFJzMBCvyd5fPy8bjkA3CB8/pub?gid=1619676924&output=csv'
+const publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSZ_aRgmKOVqj1Ch4zy8zzjkQREuYo0xXzPlJUKv4-7ULfWNNQdJbOFJgVFayS4zbT7vvkIaJ5JZaBa/pub?output=csv'
 
 export {
   getSpreadsheetData
