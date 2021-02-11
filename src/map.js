@@ -117,6 +117,15 @@ function loadMap(geoJSON) {
       `, {
         maxWidth : isMobile ? window.innerWidth * 0.75 : 450
       })
+
+    layer.bindTooltip(`
+      <div class="tooltip">
+        <strong style="font-size: 1.25em;">${prop['ENTITY']}</strong>
+        ${prop['LOCATION'] ? `<br /><span>${prop['LOCATION']}</span>` : ''}
+      </div>
+      `, {
+        maxWidth : isMobile ? window.innerWidth * 0.75 : 450
+      })
   }
 
   const pointsLayers = L.geoJSON(geoJSON, {
