@@ -73,7 +73,7 @@ function buildGeoJSON(data) {
         featureCollection['features'].push(built)
       }
     } catch (e) {
-        console.log('error parsing row', i, e)
+        console.log('error parsing row', i, feature, e)
     }
   }
   return featureCollection
@@ -130,7 +130,6 @@ function loadMap(geoJSON) {
 
   const pointsLayers = L.geoJSON(geoJSON, {
     pointToLayer: function(feature, latlng) {
-      console.log(feature);
       return L.circleMarker(latlng, {
         radius: 9,
         fillColor: roleColors[feature.properties['GENERAL ROLE']],

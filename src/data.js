@@ -14,8 +14,13 @@ function getSpreadsheetData() {
   header: true,
   complete: function(results) {
       const data = results.data
-      Map.init(data)
-      Table.init(data, '#table')
+      const publishedData = data.filter(function(obj){
+        if ('STATUS' in obj) {
+          return obj['STATUS'].trim().toLowerCase() == 'published'
+        }
+      })
+      Map.init(publishedData)
+      Table.init(publishedData, '#table')
     }
   })
 }
