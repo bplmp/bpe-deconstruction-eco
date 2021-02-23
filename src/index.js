@@ -11,6 +11,9 @@ app.innerHTML = `
   </div>
 </div>
 <div id="map"></div>
+<a href="https://www.buildingproductecosystems.org/" target="_blank">
+  <img src="images/bpe-logo.png" alt="Building Product Ecosystems" id="mapLogo"></img>
+</a>
 <div id="mapLegend"></div>
 <div class="table-wrapper">
   <table id="table" class="stripe display responsive" width="100%"></table>

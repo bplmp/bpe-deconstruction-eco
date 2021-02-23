@@ -83,8 +83,13 @@ function loadMap(geoJSON) {
   const map = L.map('map', {
     center: INITIAL_COORDS,
     zoom: INITIAL_ZOOM,
-    scrollWheelZoom: false
+    scrollWheelZoom: false,
+    zoomControl: false,
   })
+
+  L.control.zoom({
+    position: 'bottomleft'
+  }).addTo(map);
 
   L.tileLayer(MAPBOX_LINK, {
     maxZoom: 18,
